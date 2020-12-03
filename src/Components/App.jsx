@@ -5,10 +5,6 @@ import location from "../data";
 
 const App = () =>{
 
-    // const [showValues,setShowValues] = useState(false);
-    // const showValues = true;
-    
-
     const ButtonStyle={
         "backgroundColor":"grey",
         "color":"white",
@@ -17,19 +13,19 @@ const App = () =>{
     }
 
     const [path,setPath] = useState("")   //full path
-    // let locationStack = [];
+    
     const [locationStack,setLocationStack] = useState([]);
 
     function handleClick(event){
         let loca = event.target.name;
         console.log(loca);
 
-        // setShowValues(true);
+        
         if(path===""){
             
             setLocationStack(prevValue=>[...prevValue,loca])
             setPath(loca)
-            // console.log("if->locationStack->"+locationStack);
+            
         }else if(locationStack[locationStack.length-1]===loca){
             let poppedLoc = locationStack.pop();
             console.log("poppedLoc->"+poppedLoc);
@@ -47,7 +43,6 @@ const App = () =>{
             setLocationStack(prevValue=>[...prevValue,path+"_"+loca])
             setPath(prevValue=>prevValue+"_"+loca)
             
-            // console.log("else->locationStack->"+locationStack);
         }
 
         console.log("locationStack->"+locationStack);
@@ -56,9 +51,13 @@ const App = () =>{
     }
 
     
-    console.log("path->"+path);
+    // console.log("path->"+path);
+
+    /*****NewLocationArray**************/
     let newLocArray = location[path];
-    console.log(newLocArray);
+    /*****NewLocationArray**************/
+
+    // console.log(newLocArray);
     
 
     return(
