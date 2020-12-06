@@ -29,7 +29,7 @@ const locationObject = {
     "Kolkata_South_Ballygunge_Fari" : ["Office"],
     "Kolkata_North" : ["MG_Road","Shyambazar"],
     "Kolkata_North_MG_Road" : ["Metro_Station"],
-    "Kolkata_North_Shyambazar" : ["Allans_Kitchen"]
+    "Kolkata_North_Shyambazar" : ["Allans-Kitchen"]
 }
 
 export default locationObject;

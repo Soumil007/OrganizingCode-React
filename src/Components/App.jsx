@@ -16,6 +16,24 @@ const App = () =>{
     
     const [locationStack,setLocationStack] = useState([]);
 
+    const [locationNavigation,setLocationNavigation] = useState([]);
+
+
+    function makeLocationNavigation(path){
+
+        let locArray = path.split("_");
+        console.log(locArray);
+        let currentLoc = locArray[locArray.length-1]
+        console.log(currentLoc);
+        let new_location = {
+            [currentLoc]:path
+        }
+        console.log(new_location);
+        setLocationNavigation(prev=>[...prev,new_location])
+    }
+
+    console.log(locationNavigation);
+
     function handleClick(event){
         let loca = event.target.name;
         console.log(loca);
@@ -24,7 +42,8 @@ const App = () =>{
         if(path===""){
             
             setLocationStack(prevValue=>[...prevValue,loca])
-            setPath(loca)
+            setPath(loca);
+            console.log("path=>"+path);
             
         }else if(locationStack[locationStack.length-1]===loca){
             let poppedLoc = locationStack.pop();
@@ -34,9 +53,6 @@ const App = () =>{
             }else{
                 setPath(locationStack[locationStack.length-1])
             }
-            
-
-            console.log("elseif->locationStack->"+locationStack);
         }
         else{
             
@@ -45,13 +61,22 @@ const App = () =>{
             
         }
 
-        console.log("locationStack->"+locationStack);
-        console.log(typeof locationStack);
+        if(locationStack.length!==0){
+            console.log("path =>"+path);
+            console.log(locationStack[locationStack.length-1]);
+            makeLocationNavigation(locationStack[locationStack.length-1]);
+        }
+        
+            
         
     }
+    // console.log(path);
+    console.log(locationStack);
 
     
     // console.log("path->"+path);
+    
+
 
     /*****NewLocationArray**************/
     let newLocArray = location[path];
@@ -62,7 +87,19 @@ const App = () =>{
 
     return(
         <div>
-            <h1>{path}</h1>
+            {/* {path.split("_").map((uniPath,index)=> <button >{uniPath}</button>)} */}
+            {/* {locationNavigation.map((unipath)=><button style={ButtonStyle} onClick={handleClick} name={unipath.value}>{unipath.key}</button> )} */}
+            {locationNavigation.map(unipath=>{
+                
+                for(var key in unipath){
+                    return(
+                        <button style={ButtonStyle} onClick={handleClick} name={unipath[key]}>{key}</button>
+                        )
+                }
+                return 0;
+            })}
+            <br />
+            <br />
             <button onClick={handleClick} style={ButtonStyle} name={path===""?"Kolkata":path}>{path===""?"Kolkata":path}</button>
             <br />
             <br />
